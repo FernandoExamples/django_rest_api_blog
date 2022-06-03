@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
 
 from categories.api.router import router_categories
+from posts.api.router import router_post
 
 
 schema_view = get_schema_view(
@@ -39,7 +41,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('users.api.router')),
     path('api/', include(router_categories.urls)),
+    path('api/', include(router_post.urls)),
     # Documentation
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redocs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

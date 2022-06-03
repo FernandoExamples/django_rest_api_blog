@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'users',
     'categories',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,7 @@ STATIC_ROOT = './static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+# MEDIA FILES
+MEDIA_URL = "/media/"
+MEDIA_ROOT = Path(BASE_DIR, 'media').resolve()
