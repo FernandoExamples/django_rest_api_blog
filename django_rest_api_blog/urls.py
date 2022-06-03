@@ -22,6 +22,7 @@ from rest_framework import permissions
 
 from categories.api.router import router_categories
 from posts.api.router import router_post
+from comments.api.router import router_comments
 
 
 schema_view = get_schema_view(
@@ -42,6 +43,7 @@ urlpatterns = [
     path('api/users/', include('users.api.router')),
     path('api/', include(router_categories.urls)),
     path('api/', include(router_post.urls)),
+    path('api/', include(router_comments.urls)),
     # Documentation
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redocs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
